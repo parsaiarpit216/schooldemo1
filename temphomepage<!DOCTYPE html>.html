@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evergreen International School</title>
+    <style>
+        /* CSS Variables for Easy Customization */
+        :root {
+            --primary: #1a4d2e; /* Dark Green */
+            --secondary: #ff9f1c; /* Orange Accent */
+            --text-dark: #2d3436;
+            --text-light: #a5f2ee;
+            --bg-light: #E6FFDA;
+            --white: #E6FFDA;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body { color: var(--text-dark); line-height: 1.8; overflow-x: hidden; }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            box-shadow: 0 2px 10px rgba(17, 12, 12, 0.1);
+            z-index: 1000;
+        }
+
+        .logo { font-size: 1.6rem; font-weight: 800; color: var(--primary); }
+
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 30px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--secondary); }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgb(8, 237, 245), rgb(5, 237, 245)), 
+                        url('https://images.unsplash.com/photo-1546410531-bb4abcaf501e?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--black);
+            text-align: center;
+            padding: 0 10%;
+        }
+
+        .hero h1 { font-size: 4rem; margin-bottom: 20px; line-height: 1.2; }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin-bottom: 30px; }
+
+        /* Statistics Section */
+        .stats {
+            background: var(--primary);
+            color: var(--black);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 50px 10%;
+            text-align: center;
+        }
+        .stat-item h2 { font-size: 2.5rem; color: var(--secondary); }
+
+        /* Generic Section Styling */
+        section { padding: 100px 10%; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.5rem; color: var(--primary); }
+        .section-header div { 
+            width: 80px; height: 4px; background: var(--secondary); 
+            margin: 10px auto; border-radius: 2px; 
+        }
+
+        /* Features/Academic Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            border-bottom: 5px solid var(--primary);
+            box-shadow: 0 10px 30px #a5f2ee;(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        .card:hover { transform: translateY(-10px); }
+
+        /* Faculty Section */
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .faculty-card { text-align: center; }
+        .faculty-card img {
+            width: 150px; height: 150px; border-radius: 50%;
+            object-fit: cover; margin-bottom: 15px;
+            border: 5px solid #eee;
+        }
+
+        /* Testimonials */
+        .testimonials { background: var(--bg-light); }
+        .testimonial-item {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            font-style: italic;
+            position: relative;
+        }
+
+        /* Contact Area */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+        }
+        .info-box { background: var(--primary); color: #a5f2ee; padding: 40px; border-radius: 15px; }
+        
+        input, textarea {
+            width: 100%; padding: 15px; margin-bottom: 20px;
+            border: 1px solid #ddd; border-radius: 8px; outline: none;
+        }
+
+        .btn-submit {
+            background: var(--secondary); color: white;
+            border: none; padding: 15px 30px; border-radius: 8px;
+            font-weight: bold; cursor: pointer; transition: var(--transition);
+        }
+        .btn-submit:hover { background: #e68a00; }
+
+        footer { background: #111; color: #ccc; padding: 60px 10% 20px; }
+        .footer-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px; margin-bottom: 40px;
+        }
+        
+        /* Mobile Menu */
+        .menu-toggle { display: none; font-size: 2rem; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .stats { grid-template-columns: 1fr 1fr; gap: 20px; }
+            .hero h1 { font-size: 2.5rem; }
+            .contact-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">EVERGREEN</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#academics">Academics</a></li>
+            <li><a href="#faculty">Faculty</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <h1>Building Future Leaders Since 1990</h1>
+        <p>A global community of learners committed to academic excellence, personal growth, and social responsibility.</p>
+        <a href="#academics" style="background: var(--secondary); color:white; padding: 15px 40px; text-decoration: none; border-radius: 30px; font-weight: bold;">Explore Programs</a>
+    </section>
+
+    <div class="stats">
+        <div class="stat-item"><h2>25+</h2><p>Years Experience</p></div>
+        <div class="stat-item"><h2>1500+</h2><p>Active Students</p></div>
+        <div class="stat-item"><h2>120+</h2><p>Expert Teachers</p></div>
+        <div class="stat-item"><h2>98%</h2><p>University Placement</p></div>
+    </div>
+
+    <section id="about">
+        <div class="section-header">
+            <h2>Our Mission</h2>
+            <div></div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+            <div style="flex: 1; min-width: 300px;">
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80" alt="About Us" style="width: 100%; border-radius: 15px;">
+            </div>
+            <div style="flex: 1; min-width: 300px;">
+                <h3>Why Choose Evergreen?</h3>
+                <p>We believe that every child is unique and deserves an environment that fosters curiosity. Our campus provides a blend of traditional values and modern technology.</p>
+                <ul style="margin-top: 20px; list-style: none;">
+                    <li>✅ Smart Classrooms</li>
+                    <li>✅ International Curriculum</li>
+                    <li>✅ Olympic Size Sports Complex</li>
+                    <li>✅ Personal Mentorship Programs</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="academics" style="background: var(--bg-light);">
+        <div class="section-header">
+            <h2>Academic Programs</h2>
+            <div></div>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>Primary Years</h3>
+                <p>Focusing on foundational literacy and numeracy through play-based learning and exploration.</p>
+            </div>
+            <div class="card">
+                <h3>Middle School</h3>
+                <p>Encouraging critical thinking and independent research across sciences and humanities.</p>
+            </div>
+            <div class="card">
+                <h3>Senior Secondary</h3>
+                <p>Rigorous preparation for university entrance exams and global career paths.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faculty">
+        <div class="section-header">
+            <h2>Our Leadership</h2>
+            <div></div>
+        </div>
+        <div class="faculty-grid">
+            <div class="faculty-card">
+                <img src="https://i.pravatar.cc/150?u=1" alt="Dean">
+                <h4>Dr. Sarah Jenkins</h4>
+                <p>School Principal</p>
+            </div>
+            <div class="faculty-card">
+                <img src="https://i.pravatar.cc/150?u=2" alt="Head">
+                <h4>Prof. Michael Chen</h4>
+                <p>Head of Academics</p>
+            </div>
+            <div class="faculty-card">
+                <img src="https://i.pravatar.cc/150?u=3" alt="Sports">
+                <h4>Coach Robert Fox</h4>
+                <p>Sports Director</p>
+            </div>
+            <div class="faculty-card">
+                <img src="https://i.pravatar.cc/150?u=4" alt="Arts">
+                <h4>Elena Rodriguez</h4>
+                <p>Arts Coordinator</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="section-header">
+            <h2>Parent Testimonials</h2>
+            <div></div>
+        </div>
+        <div class="grid">
+            <div class="testimonial-item">
+                <p>"Evergreen has completely transformed my daughter's confidence. The teachers are incredibly supportive!"</p>
+                <strong style="display:block; margin-top:15px;">- Jane Cooper</strong>
+            </div>
+            <div class="testimonial-item">
+                <p>"The best sports facilities in the region. My son loves the football academy here."</p>
+                <strong style="display:block; margin-top:15px;">- Mark Thompson</strong>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-header">
+            <h2>Get In Touch</h2>
+            <div></div>
+        </div>
+        <div class="contact-container">
+            <div class="info-box">
+                <h3>Contact Information</h3>
+                <p>📍 123 Education Lane, Knowledge City</p>
+                <p>📞 +1 (555) 123-4567</p>
+                <p>✉️ info@evergreen.edu</p>
+                <div style="margin-top: 30px;">
+                    <h4>Office Hours</h4>
+                    <p>Mon - Fri: 8:00 AM - 4:00 PM</p>
+                </div>
+            </div>
+            <form id="contactForm">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <select style="width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px;">
+                    <option>General Inquiry</option>
+                    <option>Admissions</option>
+                    <option>Career</option>
+                </select>
+                <textarea rows="5" placeholder="How can we help you?"></textarea>
+                <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h3>Evergreen Academy</h3>
+                <p>Nurturing the leaders of tomorrow with a world-class education system.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <p>Admissions</p>
+                <p>School Calendar</p>
+                <p>Privacy Policy</p>
+            </div>
+            <div>
+                <h4>Follow Us</h4>
+                <p>Facebook | Instagram | Twitter</p>
+            </div>
+        </div>
+        <hr style="border: 0; border-top: 1px solid #333; margin-bottom: 20px;">
+        <p style="text-align: center;">&copy; 2025 Evergreen International School. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll reveal animation on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(sec => {
+                const top = window.scrollY;
+                const offset = sec.offsetTop - 150;
+                const height = sec.offsetHeight;
+                if (top >= offset && top < offset + height) {
+                    sec.style.opacity = '1';
+                    sec.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Message sent successfully! We will contact you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
